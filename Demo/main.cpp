@@ -101,7 +101,23 @@ int main( void ){
         //accelerometer with the set speedsensitivity.
         ballLocation.y -= accelX / speedsens;
         ballLocation.x -= accelY / speedsens;
-    
+        
+        //This makes sure the ball can't leave the screen
+        //The high value at the first and thirth if statment are there 
+        //because when the value gets below zero it goes the to max value.
+        if(ballLocation.y <= 4 || ballLocation.y > 10000){
+            ballLocation.y = 4;
+        }
+        if(ballLocation.y >= 60){
+            ballLocation.y = 60;
+        }
+        if(ballLocation.x <= 4 || ballLocation.x > 10000){
+            ballLocation.x = 4;
+        } 
+        if(ballLocation.x >= 124){
+            ballLocation.x = 124;
+        }
+        
         //Create the target location with the random x and y values
         hwlib::location randomlocation(targetX, targetY);
 	
@@ -113,4 +129,4 @@ int main( void ){
         target.draw(display);
         display.flush(); 
     }
-}   
+}      
